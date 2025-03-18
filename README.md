@@ -170,3 +170,105 @@ Ich habe verschiedene Datentypen kennengelernt und in einer Tabelle vervollstän
 - SQL bietet mächtige Werkzeuge zur Datenabfrage und -bearbeitung.
 - Durch Normalisierung und Strukturierung können Redundanzen und Inkonsistenzen vermieden werden.
 
+
+# Tag 4 – Datenbanken erstellen und Daten einfügen
+
+Heute habe ich mich intensiv mit der Erstellung und Verwaltung von Fremdschlüsselbeziehungen in relationalen Datenbanken sowie deren Einschränkungen beschäftigt. Dabei lag der Fokus auf der praktischen Umsetzung von **Constraints**, der Implementierung von **Fremdschlüsselbeziehungen** und dem **Forward Engineering** in MySQL/MariaDB.
+
+---
+
+## Was ich heute gelernt habe:
+
+---
+
+### Wiederholung & Vertiefung
+
+- **Recap / Q&A zu Tag 3**: Analyse der Fremdschlüssel-Constraints und deren Anwendung zur Sicherstellung der referenziellen Integrität.
+- **Erweiterung des Wissens über Constraints und Fremdschlüsselbeziehungen**: Besonderes Augenmerk auf die Bedeutung von **NOT NULL** und **UNIQUE** für die Wahrung der Datenintegrität.
+- **Mengenlehre**: Einführung in Mengenoperationen und deren Anwendung bei **SQL JOINs**.
+- **Vorbereitung auf die Anwendung von Forward Engineering**: Praktische Durchführung von SQL-Skripten zur Erstellung der relationalen Datenbankbeziehungen.
+
+---
+
+### Wichtige Konzepte & Umsetzung:
+
+---
+
+#### Beziehungen in relationalen Datenbanken
+
+- **Beziehungen mit Einschränkungen**:
+  - **Fremdschlüssel-Constraints** spielen eine entscheidende Rolle beim Aufbau von Beziehungen zwischen Tabellen, um Datenkonsistenz und referenzielle Integrität zu gewährleisten.
+  - **NOT NULL (NN)** und **UNIQUE (UQ)** Constraints stellen sicher, dass Fremdschlüsselwerte korrekt und eindeutig sind.
+  
+- **Beziehungstypen im physischen Modell**:
+  - **1:1**: Eine Eins-zu-Eins-Beziehung zwischen zwei Tabellen.
+  - **1:m**: Eine Eins-zu-Viele-Beziehung zwischen zwei Tabellen.
+  - **m:m**: Eine Viele-zu-Viele-Beziehung, die über eine Transformationstabelle realisiert wird.
+
+---
+
+#### Praktische Umsetzung
+
+- **Erstellung und Implementierung von Beziehungen mit Fremdschlüssel-Constraints**:
+  - In MySQL Workbench habe ich Tabellenbeziehungen erstellt und die **Constraints** (NN und UQ) richtig gesetzt, um die Datenintegrität zu sichern.
+  - Beispiel für eine **1:m-Beziehung**:
+    ```sql
+    ALTER TABLE tbl_Ausweis
+    ADD CONSTRAINT FK_Ausweis_Fahrer FOREIGN KEY (FahrerID)
+    REFERENCES tbl_Fahrer (FahrerID);
+    ```
+
+- **Forward Engineering**:
+  - Mit **Forward Engineering** habe ich das ERD in SQL-Datenbank-Skripte umgesetzt. Dies ermöglichte es mir, automatisch DDL-SQL-Befehle für die Erstellung von Tabellen und Beziehungen zu generieren.
+  - Durch das Erzeugen und Speichern des DDL-SQL-Skripts konnte ich die Tabellenstruktur und die Beziehungen einfach testen.
+
+- **Erweiterung und Testen der Fremdschlüsselbeziehungen**:
+  - Das Einfügen von Datensätzen in Tabellen mit existierenden Fremdschlüsselbeziehungen wurde getestet, wobei ich auf die Einhaltung von **referenzieller Integrität** achtete.
+  - Dabei überprüfte ich, was passiert, wenn ein **ungültiger Fremdschlüsselwert** eingefügt wird, z.B. ein Wert, der nicht im Primärschlüssel der referenzierten Tabelle existiert.
+
+---
+
+#### Mengenlehre und SQL-Operationen
+
+- **Mengenoperationen und deren Anwendung auf SQL JOINs**:
+  - Ich habe mich mit der **Mengenlehre** beschäftigt, die als Grundlage für das Verständnis von SQL-Join-Operationen dient, insbesondere bei der Verknüpfung von Datensätzen aus mehreren Tabellen.
+  - Die relevanten **Mengenoperationen** sind **Schnittmenge (∩)**, **Vereinigung (∪)** und **Differenzmenge (\\)**, die bei der Formulierung von SQL-Abfragen und der Verwendung von **JOINs** in komplexeren Abfragen helfen.
+
+- **SELECT JOIN**:
+  - **INNER JOIN** und **LEFT JOIN** wurden angewendet, um Daten aus mehreren Tabellen zu kombinieren. Ein praktisches Beispiel:
+    ```sql
+    SELECT * FROM tbl_Ausweis
+    LEFT JOIN tbl_Fahrer
+    ON tbl_Ausweis.FahrerID = tbl_Fahrer.FahrerID;
+    ```
+
+---
+
+### Fragen, die ich heute beantwortet habe:
+
+- **Wie wird der Fremdschlüssel-Constraint "NOT NULL" erstellt?**
+  - Der **NOT NULL**-Constraint wird durch die Definition des Fremdschlüssels mit der Einschränkung auf **NOT NULL** in der Tabelle hinzugefügt, um sicherzustellen, dass der Wert des Fremdschlüssels immer vorhanden ist.
+
+- **Warum wird für jeden Fremdschlüssel ein Index erstellt?**
+  - Ein **Index** wird automatisch erstellt, um die **Abfragegeschwindigkeit** zu optimieren. Indizes ermöglichen es, die Fremdschlüsselwerte schneller zu durchsuchen und die referenzielle Integrität effizienter zu überprüfen.
+
+- **Was passiert, wenn ein ungültiger Fremdschlüsselwert eingefügt wird?**
+  - Mit einem **Constraint** wird der ungültige Fremdschlüsselwert abgelehnt und verhindert, dass inkonsistente Daten in die Tabelle eingefügt werden.
+
+- **Wie wird der **UNIQUE**-Constraint für Fremdschlüssel im Forward Engineering erstellt?**
+  - Der **UNIQUE**-Constraint stellt sicher, dass der Wert des Fremdschlüssels in der Detailtabelle nur einmal vorkommen darf. Dies wird durch die Definition des Fremdschlüssels als **UNIQUE** während des Forward Engineerings erreicht.
+
+---
+
+## Meine Erkenntnisse heute:
+
+- **Beziehungen müssen klar und präzise definiert werden**, insbesondere die **Einschränkungen** für die Fremdschlüsselbeziehungen, um Datenintegrität zu gewährleisten.
+- **Fremdschlüssel-Constraints** sind ein essenzielles Werkzeug zur Sicherstellung der referenziellen Integrität in relationalen Datenbanken.
+- **Forward Engineering** vereinfacht den Prozess der Datenbankerstellung und hilft, die Struktur schnell und fehlerfrei zu generieren.
+- Das Verständnis von **Mengenoperationen** ist entscheidend, um komplexe SQL-Abfragen zu formulieren und Daten korrekt zu verknüpfen.
+
+---
+
+Durch diese Vertiefung der **Beziehungen** und **Constraints** konnte ich ein tieferes Verständnis für die Funktionsweise und die praktischen Anwendungen relationaler Datenbanken entwickeln und die grundlegenden SQL-Befehle sicher anwenden.
+
+
