@@ -81,3 +81,92 @@ Heute habe ich mich intensiv mit der Erstellung von Datenbanken und dem Einfüge
 - Durch das Verwenden von Primär- und Fremdschlüsseln kann die Datenintegrität sichergestellt werden.
 - SQL bietet eine flexible Möglichkeit, Daten geordnet und strukturiert einzufügen und zu verwalten.
 
+# Tag 3 – Datenbanken erstellen und Daten einfügen
+
+Heute habe ich mich intensiv mit der Erstellung von Datenbanken und dem Einfügen von Daten in MySQL/MariaDB beschäftigt. Dabei wurden verschiedene Konzepte und Beziehungen innerhalb einer relationalen Datenbank untersucht und praktisch umgesetzt.
+
+## Was ich heute gelernt habe:
+
+### Wiederholung & Vertiefung
+
+- **Recap / Q&A zu Tag 2:** Generalisierung/Spezialisierung, Identifying Relationships in MySQL Workbench
+- **Wiederholung der Datentypen aus Modul 162**
+- **Erweiterung des Tourenplaners mit neuen Beziehungen**
+
+### Wichtige Konzepte & Umsetzung:
+
+#### Datentypen in MariaDB/MySQL
+
+Ich habe verschiedene Datentypen kennengelernt und in einer Tabelle vervollständigt. Dazu gehören:
+
+- Ganze Zahlen
+- Natürliche Zahlen
+- Dezimalzahlen (Decimal(M,D))
+- Aufzählungstypen
+- Boolean (logische Werte)
+- Zeichen (einzelnes Zeichen)
+- Gleitkommazahlen
+- Zeichenketten (feste & variable Länge)
+- Datum/Zeit
+- Zeitstempel
+- Binäre Datenobjekte (z.B. Bilder)
+- JSON
+
+#### Beziehungsarten in relationalen Datenbanken
+
+- **Mehrfachbeziehungen:** Eine Entität kann mehrere Beziehungen zu einer anderen Entität haben. Diese Beziehungen müssen eindeutig benannt werden (z. B. unterschiedliche Rollen).
+- **Rekursion (strenge Hierarchie):** Eine Entität kann auf sich selbst referenzieren, um eine Hierarchie darzustellen (z. B. Mitarbeiter mit Vorgesetzten).
+- **Einfache Hierarchie (mit Zwischentabelle):** Eine Netzwerkstruktur erfordert eine mc:mc-Beziehung mit einer Zwischentabelle.
+- **Stücklistenproblem:** Rekursion zur Abbildung von modularen Produkten und deren Bestandteilen.
+
+### Praktische Umsetzung
+
+#### Erweiterung des Tourenplaners
+
+- Einbau der Mehrfachbeziehungen, Rekursion und einfachen Hierarchie
+- Umsetzung in MySQL Workbench mit Forward Engineering
+- Strukturierung der Datenbasis für spätere Nutzung
+
+#### Datenbearbeitung mit DML-Befehlen (ÜK Modul 106)
+
+- **INSERT:** Einfügen neuer Datensätze in die Tabellen
+- **UPDATE:** Aktualisieren vorhandener Datensätze
+- **DELETE:** Entfernen von Datensätzen
+- **ALTER/DROP:** Strukturänderungen an Tabellen
+
+#### Arbeiten mit SELECT-Befehlen
+
+- **Grundlegende Abfragen:** `SELECT * FROM Tabelle`
+- **Filtern mit WHERE:** Einschränkung von Ergebnissen nach bestimmten Kriterien
+- **Verknüpfungen (JOINs):** Abrufen von Daten aus mehreren Tabellen
+- **Mathematische & logische Funktionen:** Nutzung von `ROUND`, `IF`, `POWER`, `ABS` usw.
+
+#### Hierarchie in der Tourenplaner-Datenbank
+
+- Aufbau einer Unternehmenshierarchie mit einer rekursiven Beziehung
+- Beispiel-Mitarbeiterliste mit Zuweisung der Vorgesetzten
+- Einfügen und Testen mit SQL-Statements (`UPDATE` mit `SET WHERE IN`)
+
+#### Mehrfachbeziehungen in der Tourenplanung
+
+- Einfügen von Tour-Daten mit Start-, Ziel- und Zwischenorten
+- Prüfung der Daten mit `SELECT` und `JOINs`
+
+## Fragen, die ich heute beantwortet habe:
+
+- **Welche Schwierigkeiten gibt es beim Einfügen von Daten mit Fremdschlüssel-Constraints?**
+  - Referenzielle Integrität kann verhindern, dass Datensätze eingefügt oder gelöscht werden, wenn abhängige Einträge fehlen.
+
+- **Warum sind NULL-Werte in der Hierarchie-Tabelle problematisch?**
+  - In einer Transformationstabelle stellt jede Zeile eine konkrete Beziehung dar, weshalb NULL-Werte vermieden werden müssen.
+
+- **Wann muss eine separate Hierarchie-Tabelle anstelle einer rekursiven Beziehung eingesetzt werden?**
+  - Wenn eine Entität mehrere Vorgesetzte haben kann, erfordert dies eine mc:mc-Beziehung mit einer Zwischentabelle.
+
+## Meine Erkenntnisse heute:
+
+- Die Wahl der richtigen Datentypen ist essenziell für die Effizienz und Konsistenz einer Datenbank.
+- Beziehungen in einer Datenbank müssen klar definiert und logisch aufgebaut sein.
+- SQL bietet mächtige Werkzeuge zur Datenabfrage und -bearbeitung.
+- Durch Normalisierung und Strukturierung können Redundanzen und Inkonsistenzen vermieden werden.
+
