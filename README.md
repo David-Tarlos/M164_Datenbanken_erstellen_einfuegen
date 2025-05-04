@@ -401,6 +401,39 @@ Heute habe ich mich mit Backup-Methoden für Datenbanken und der praktischen Ums
   mysqldump -u root -p --databases tourenplaner > C:/backup/tourenplaner.sql
 
 
+# Tag 8 – OpenData und erweiterte Datenbankanwendungen
+
+Heute habe ich mich mit OpenData-Quellen beschäftigt und praktische Erfahrungen im Import und der Analyse öffentlicher Datensätze gesammelt. Der Fokus lag auf der Normalisierung von OpenData und der Anwendung von SQL-Abfragen zur Datenanalyse.
+
+---
+
+## Was ich heute gelernt habe
+
+### 1. OpenData: Grundlagen und Quellen
+
+- **Definition:** Öffentlich zugängliche Datensätze von Behörden/Institutionen (z. B. Bundesamt für Statistik, Stadt Zürich)
+- **Formate:** CSV, Excel, JSON (häufig mit Metadaten)
+- **Anwendungsfälle:** Statistische Analysen, Visualisierungen, Forschungsprojekte
+
+---
+
+### 2. Praktische Übungen mit OpenData
+
+#### a. Steuerdaten der Stadt Zürich
+
+- **Dataset:** Median-Einkommen nach Stadtquartieren (CSV)
+
+**Schritte:**
+
+- **Normalisierung:**
+  - Aufteilung in Tabellen für Quartiere, Jahre, Einkommenswerte (`_p25`, `_p50`, `_p75`)
+  - Fremdschlüssel für Quartier-ID und Jahr
+
+- **Import:**
+  ```sql
+  LOAD DATA LOCAL INFILE 'steuerdaten.csv' INTO TABLE einkommen 
+  FIELDS TERMINATED BY ',' IGNORE 1 ROWS;
+
 
 
 
