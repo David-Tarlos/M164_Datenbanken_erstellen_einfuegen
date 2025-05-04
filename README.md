@@ -315,5 +315,51 @@ ALTER TABLE tbl_orders
 ADD CONSTRAINT FK_Order_Customer FOREIGN KEY (customer_id)  
 REFERENCES tbl_customers(id) ON DELETE CASCADE;
 
+# Tag 6 – Subqueries und Bulk-Import mit LOAD DATA INFILE
+
+Heute habe ich mich mit Unterabfragen (Subqueries) und dem massiven Import von Daten via `LOAD DATA INFILE` beschäftigt. Dabei ging es um skalare/nicht-skalare Subqueries sowie die effiziente Überführung von CSV-Daten in MySQL-Tabellen.
+
+---
+
+## Was ich heute gelernt habe:
+
+### 1. Subqueries (Unterabfragen)
+
+**Definition:** Eine Abfrage innerhalb einer anderen Abfrage, um Daten basierend auf Ergebnissen aus anderen Tabellen zu filtern/berechnen.
+
+**Arten:**
+
+- **Skalare Subquery:** Gibt einen einzigen Wert zurück (z. B. `SELECT AVG(price)`).
+  - **Operatoren:** `=`, `>`, `<`, etc.
+  - **Beispiel:**
+    ```sql
+    SELECT title FROM books 
+    WHERE price > (SELECT AVG(price) FROM books);
+    ```
+
+- **Nicht-skalare Subquery:** Gibt mehrere Werte zurück (z. B. Liste mit `IN`).
+  - **Operatoren:** `IN`, `NOT IN`, `EXISTS`
+  - **Beispiel:**
+    ```sql
+    SELECT name FROM users 
+    WHERE country IN (SELECT country FROM european_countries);
+    ```
+
+**Anwendungsorte:** `WHERE`, `FROM`, `HAVING`, `JOIN`
+
+---
+
+### 2. Bulk-Import mit `LOAD DATA INFILE`
+
+**Zweck:** Schnelles Einlesen großer CSV-Dateien in MySQL-Tabellen.
+
+**Wichtige Einstellungen:**
+
+- **Server-Seitig:**
+  ```sql
+  SET GLOBAL local_infile = 1;  -- Aktiviert Import vom Client
+  SHOW VARIABLES LIKE 'secure_file_priv';  -- Sollte leer sein!
+
+
 
 
