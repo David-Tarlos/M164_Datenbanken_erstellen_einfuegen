@@ -271,4 +271,49 @@ Heute habe ich mich intensiv mit der Erstellung und Verwaltung von Fremdschlüss
 
 Durch diese Vertiefung der **Beziehungen** und **Constraints** konnte ich ein tieferes Verständnis für die Funktionsweise und die praktischen Anwendungen relationaler Datenbanken entwickeln und die grundlegenden SQL-Befehle sicher anwenden.
 
+# Tag 5 – Datenintegrität, DQL, DCL und SELECT-Abfragen
+
+Heute habe ich mich mit Datenintegrität, Löschoperationen in professionellen Datenbanken und erweiterten SELECT-Abfragen beschäftigt. Der Fokus lag auf den FK-Constraint-Optionen, Aggregatsfunktionen und der Reihenfolge von SELECT-Klauseln.
+
+## Was ich heute gelernt habe:
+
+### 1. Einführung in Datenintegrität und Löschregeln
+
+**Löschen in professionellen DBs:**
+
+- Daten werden selten physisch gelöscht, sondern durch Soft-Deletes markiert (z. B. `is_active = 0` oder Austrittsdatum).
+- **Gründe:** Historisierung, Compliance, Vermeidung von Informationsverlust (z. B. in Banken oder Wikis).
+
+**Datenintegrität:**
+
+- 5 Aspekte:  
+  - Eindeutigkeit  
+  - Referenzielle Integrität  
+  - Korrekte Datentypen  
+  - Validierung  
+  - Beschränkungen (z. B. `CHECK`)
+- Unterschied zur Konsistenz:  
+  - **Integrität** = Regeln für korrekte Daten  
+  - **Konsistenz** = logische Widerspruchsfreiheit
+
+---
+
+### 2. Fremdschlüssel-Constraints (ON DELETE/UPDATE)
+
+**Optionen beim Löschen:**
+
+- `NO ACTION` (Standard): Blockiert Löschen, wenn abhängige Datensätze existieren.
+- `CASCADE`: Löscht/aktualisiert abhängige Datensätze automatisch  
+  *(Achtung: Risiko von Kettenreaktionen!)*
+- `SET NULL`: Setzt Fremdschlüssel auf `NULL`  
+  *(nur möglich, wenn Spalte `NULL` erlaubt)*
+
+**Praxisbeispiel:**
+
+```sql
+ALTER TABLE tbl_orders  
+ADD CONSTRAINT FK_Order_Customer FOREIGN KEY (customer_id)  
+REFERENCES tbl_customers(id) ON DELETE CASCADE;
+
+
 
