@@ -433,6 +433,33 @@ Heute habe ich mich mit OpenData-Quellen beschäftigt und praktische Erfahrungen
   ```sql
   LOAD DATA LOCAL INFILE 'steuerdaten.csv' INTO TABLE einkommen 
   FIELDS TERMINATED BY ',' IGNORE 1 ROWS;
+  ```
+
+  # Tag 9 – Weiterarbeit und Repetition zur LB2
+
+Heute habe ich an meiner Praxisarbeit weitergearbeitet und gleichzeitig für die LB2-Prüfung repetiert.  
+Die LB2 ist eine theoretische und praktische Prüfung und zählt 40 % zur Gesamtnote.
+
+## Ablauf
+
+- **Startzeit der Prüfungssimulation:** 10:10 Uhr  
+- **Dauer:** ca. 100 Minuten  
+
+## Inhalte der Repetition
+
+- SQL-Abfragen mit `SELECT`, `WHERE`, `GROUP BY`, `JOIN`
+- Datenimport mit `LOAD DATA`
+- Normalisierung von Tabellen (1NF, 2NF)
+- Umgang mit OpenData (CSV, Excel, Sonderzeichen)
+- Verwendung von Fremdschlüsseln und Indizes
+- Backup-Strategien und Datenbank-Export
+
+## Erkenntnisse
+
+- Die praktische Anwendung der SQL-Befehle hilft, die Theorie besser zu verstehen.
+- Eine gute Vorbereitung spart Zeit in der Prüfung.
+- Wiederholung der Konzepte aus Tag 7 und 8 war hilfreich für das Gesamtverständnis.
+
 
 
 
