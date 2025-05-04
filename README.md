@@ -361,6 +361,46 @@ Heute habe ich mich mit Unterabfragen (Subqueries) und dem massiven Import von D
   SET GLOBAL local_infile = 1;  -- Aktiviert Import vom Client
   SHOW VARIABLES LIKE 'secure_file_priv';  -- Sollte leer sein!
 
+  # Tag 7 – Datensicherung und Backup-Strategien
+
+Heute habe ich mich mit Backup-Methoden für Datenbanken und der praktischen Umsetzung von Sicherungen beschäftigt. Dabei ging es um logische/physische Backups, Restore-Prozesse und die Anwendung von Tools wie `mysqldump`.
+
+---
+
+## Was ich heute gelernt habe:
+
+### 1. Backup-Arten und -Strategien
+
+#### 🔁 Voll-Backup (Full Backup)
+- **Beschreibung:** Sicherung aller Daten und Strukturen.
+- **Vorteil:** Einfache Wiederherstellung (nur eine Datei benötigt).
+- **Nachteil:** Hoher Speicherbedarf.
+
+#### 📌 Differentielles Backup
+- **Beschreibung:** Sicherung aller Änderungen seit dem letzten Voll-Backup.
+- **Vorteil:** Schneller als Voll-Backup, weniger Speicherbedarf.
+- **Nachteil:** Redundante Speicherung von Änderungen.
+
+#### 🔄 Inkrementelles Backup
+- **Beschreibung:** Nur Änderungen seit dem letzten Backup (egal ob Voll oder Inkrementell).
+- **Vorteil:** Geringster Speicherbedarf.
+- **Nachteil:** Komplexere Wiederherstellung (alle Backups bis zum Zielzeitpunkt nötig).
+
+#### 💡 Online vs. Offline-Backup
+- **Online:** Datenbank bleibt verfügbar (z. B. `mysqldump --single-transaction`).
+- **Offline:** Datenbank wird gestoppt (höhere Datenkonsistenz).
+
+---
+
+### 2. Tools für Backups
+
+#### 🛠️ `mysqldump` (logisches Backup)
+- **Funktion:** Erzeugt SQL-Skripte mit DDL- und DML-Befehlen.
+- **Backup:**
+  ```bash
+  mysqldump -u root -p --databases tourenplaner > C:/backup/tourenplaner.sql
+
+
 
 
 
