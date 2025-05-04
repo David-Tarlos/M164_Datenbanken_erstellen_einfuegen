@@ -314,6 +314,7 @@ Heute habe ich mich mit Datenintegrität, Löschoperationen in professionellen D
 ALTER TABLE tbl_orders  
 ADD CONSTRAINT FK_Order_Customer FOREIGN KEY (customer_id)  
 REFERENCES tbl_customers(id) ON DELETE CASCADE;
+```
 
 # Tag 6 – Subqueries und Bulk-Import mit LOAD DATA INFILE
 
