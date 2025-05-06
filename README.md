@@ -161,3 +161,35 @@ mysqlimport --local -u root -p db_name data.csv
 - [MySQL Cheat Sheet](#)
 - [Normalisierungsbeispiele](#)
 - [JOIN Visualizer](#)
+
+# 🌟 Tag 9 – Common Table Expressions & Stored Procedures
+📅 **Datum:** [Datum eintragen]  
+🎯 **Modul:** 164 (Datenbankerstellung & Dateneinfügung)
+
+---
+
+## 📖 Heutige Lerninhalte
+- **CTE vs. Subquery**  
+- **Vergleich CTE vs. Subquery**
+
+---
+
+## 🔍 Vertiefte Themen
+- **Common Table Expressions (CTEs):** Temporäre Ergebnismengen für bessere Lesbarkeit  
+- **Stored Procedures:** Vordefinierte SQL-Abfolgen in der Datenbank  
+- **Rekursive CTEs:** Für hierarchische Datenstrukturen
+
+---
+
+## 💡 Wichtige Erkenntnisse
+> _"CTEs strukturieren komplexe Abfragen wie Kapitel in einem Buch – jede logische Einheit wird klar getrennt."_
+
+---
+
+## ❓ Beantwortete Fragen
+
+| Frage                          | Antwort                                |
+|-------------------------------|----------------------------------------|
+| Wann CTE statt Subquery?      | Bei mehrfacher Nutzung/Wiederverwendung |
+| Vorteile von Stored Procedures? | Performance, Sicherheit, Wiederverwendung |
+
